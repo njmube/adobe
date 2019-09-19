@@ -1040,6 +1040,7 @@ public class PDFFacturaV33 {
 
 		PdfPTable subTablaEtqTotal = new PdfPTable(1);
 		agregarCeldaConFondo("Subtotal", fontHead, subTablaEtqTotal, true);
+		agregarCeldaConFondo("Amort. de Anticipo 50%", fontHead, subTablaEtqTotal, true);
 
 		List<Comprobante.Impuestos.Traslados.Traslado> traslados = comprobante.getImpuestos().getTraslados()
 				.getTraslado();
@@ -1078,31 +1079,32 @@ public class PDFFacturaV33 {
 	
 		}
 		if (existeIVATraslado) {
-			agregarCelda(formatter.format(importe), font3, subTablaValoresTotal, true);
+			//agregarCelda(formatter.format(importe), font3, subTablaValoresTotal, true);
 		} else {
 			subTablaValoresTotal.addCell(emptyCell);
 		}
 
+		agregarCelda(formatter.format(comprobante.getSubTotal().doubleValue()/2), font3, subTablaValoresTotal, true);
 		
-		if (existeISReIVA[0] || existeISReIVA[1]) {
-			List<Retencion> listaRetencion = comprobante.getImpuestos().getRetenciones().getRetencion();
-			double importeISR = 0.0;
-			double importeIVARet = 0.0;
-			for (Retencion retencion : listaRetencion) {
-				if (retencion.getImpuesto().getValor().contentEquals("001")) {
-					importeISR = retencion.getImporte().doubleValue();
-				} else if (retencion.getImpuesto().getValor().contentEquals("002")) {
-					importeIVARet = retencion.getImporte().doubleValue();
-					agregarCelda(formatter.format(importeIVARet), font3, subTablaValoresTotal, true);
-				}
-			}
-			
-			agregarCelda(formatter.format(importeISR), font3, subTablaValoresTotal, true);
-		}
+//		if (existeISReIVA[0] || existeISReIVA[1]) {
+//			List<Retencion> listaRetencion = comprobante.getImpuestos().getRetenciones().getRetencion();
+//			double importeISR = 0.0;
+//			double importeIVARet = 0.0;
+//			for (Retencion retencion : listaRetencion) {
+//				if (retencion.getImpuesto().getValor().contentEquals("001")) {
+//					importeISR = retencion.getImporte().doubleValue();
+//				} else if (retencion.getImpuesto().getValor().contentEquals("002")) {
+//					importeIVARet = retencion.getImporte().doubleValue();
+//					agregarCelda(formatter.format(importeIVARet), font3, subTablaValoresTotal, true);
+//				}
+//			}
+//			
+//			agregarCelda(formatter.format(importeISR), font3, subTablaValoresTotal, true);
+//		}
 
+		agregarCelda(formatter.format(((comprobante.getSubTotal().doubleValue()/2)*0.16)), font3, subTablaValoresTotal, true);
 		
-		
-		agregarCelda(formatter.format(comprobante.getTotal().doubleValue()), font3, subTablaValoresTotal, true);
+		agregarCelda(formatter.format(comprobante.getSubTotal().doubleValue()/2*1.16), font3, subTablaValoresTotal, true);
 		PdfPCell celdaTablaValoresTotal = new PdfPCell(subTablaValoresTotal);
 		celdaTablaValoresTotal.setHorizontalAlignment(Element.ALIGN_CENTER);
 		
