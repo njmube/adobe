@@ -1,0 +1,48 @@
+<!-- Indices written at Wed, 8 Aug 2018 16:04:46 CDT -->
+
+<datastore-indexes autoGenerate="true">
+
+	<!-- Used 5 times in query history -->
+	<datastore-index kind="NominaIASRenglon"
+		ancestor="false" source="auto">
+		<property name="curp" direction="asc" />
+		<property name="fechaPago" direction="asc" />
+	</datastore-index>
+
+	<!-- Used 1 time in query history -->
+	<datastore-index kind="ReporteRenglon" ancestor="false"
+		source="auto">
+		<property name="rfcEmisor" direction="asc" />
+		<property name="fechaCertificacion" direction="desc" />
+	</datastore-index>
+
+	<!-- Used 2 times in query history -->
+	<datastore-index kind="ConjuntoIAS" ancestor="false"
+		source="auto">
+		<property name="rfcEmpresa" direction="asc" />
+		<property name="fechaCreacion" direction="desc" />
+	</datastore-index>
+
+	<!-- Used 1 time in query history -->
+	<datastore-index kind="NominaIASRenglon"
+		ancestor="false" source="auto">
+		<property name="idConjunto" direction="asc" />
+		<property name="rfcEmisor" direction="asc" />
+		<property name="serie" direction="asc" />
+		<property name="folioInt" direction="desc" />
+	</datastore-index>
+
+	<!-- Used 4 times in query history -->
+	<datastore-index kind="NominaIASRenglon"
+		ancestor="false" source="auto">
+		<property name="curp" direction="asc" />
+		<property name="fechaPago" direction="desc" />
+	</datastore-index>
+
+	<datastore-index kind="ComplementoRenglon"
+		ancestor="false" source="manual">
+		<property name="rfcEmisor" direction="asc" />
+		<property name="fechaCertificacion" direction="desc" />
+	</datastore-index>
+
+</datastore-indexes>
